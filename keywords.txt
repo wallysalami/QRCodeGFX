@@ -1,0 +1,54 @@
+#######################################
+# Syntax Coloring Map for QRCodeGFX
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+QRCodeGFX				KEYWORD1
+QRCodeGenerator			KEYWORD1
+QRCodeECCLevel			KEYWORD1
+QRCodeRotation			KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+draw					KEYWORD2
+generateData			KEYWORD2
+releaseData				KEYWORD2
+getSideLength			KEYWORD2
+setScale				KEYWORD2
+getScale				KEYWORD2
+setColors				KEYWORD2
+setBackgroundColor		KEYWORD2
+getBackgroundColor		KEYWORD2
+setForegroundColor		KEYWORD2
+getForegroundColor		KEYWORD2
+setRotation				KEYWORD2
+getRotation				KEYWORD2
+getGenerator			KEYWORD2
+setErrorCorrectionLevel	KEYWORD2
+getErrorCorrectionLevel	KEYWORD2
+setVersion				KEYWORD2
+setVersionRange			KEYWORD2
+getMinVersion			KEYWORD2
+getMaxVersion			KEYWORD2
+setBuffers				KEYWORD2
+getQRCodeBuffer			KEYWORD2
+getTempBuffer			KEYWORD2
+getBufferSize			KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+Low						LITERAL1
+Medium					LITERAL1
+Quartile				LITERAL1
+High					LITERAL1
+R0						LITERAL1
+R90						LITERAL1
+R180					LITERAL1
+R270					LITERAL1
