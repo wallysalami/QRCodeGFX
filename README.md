@@ -167,7 +167,7 @@ For devices with very limited memory (like Arduino Uno), you can enable memory o
 #define QRCODE_GENERATOR_USE_LESS_MEMORY
 ```
 
-In that case, you must provide static buffers (as shown in the previous example) or manually set the version range according to your device capabilities:
+In that case, you must manually set the version range according to your device capabilities:
 
 ```cpp
 qrcode.getGenerator().setVersionRange(1, 6);
