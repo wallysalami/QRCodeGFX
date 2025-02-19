@@ -127,11 +127,11 @@ uint16_t QRCodeGenerator::getBufferSize(const char* text) {
 
 // Generation methods
 
-uint8_t* QRCodeGenerator::generateQRCode(const String &text) {
-  return generateQRCode(text.c_str());
+uint8_t* QRCodeGenerator::generateData(const String &text) {
+  return generateData(text.c_str());
 }
 
-uint8_t* QRCodeGenerator::generateQRCode(const char* text) {
+uint8_t* QRCodeGenerator::generateData(const char* text) {
   uint8_t minVersion = getMinVersion();
   uint8_t maxVersion = getMaxVersion();
 
@@ -151,21 +151,14 @@ uint8_t* QRCodeGenerator::generateQRCode(const char* text) {
 #else
   uint8_t version = maxVersion;
 #endif
+
   uint8_t *qrcodeBuffer = this->qrcodeBuffer;
   uint8_t *tempBuffer = this->tempBuffer;
   uint16_t bufferSizeForVersion = qrcodegen_BUFFER_LEN_FOR_VERSION(version);
-  if (bufferSizeForVersion == 0) {
-    return NULL; // error: text size probably beyond the QRCode limits
-  }
 
   if (qrcodeBuffer == NULL) { // no buffer provided
     qrcodeBuffer = (uint8_t *)malloc(bufferSizeForVersion);
     if (qrcodeBuffer == NULL) {
-      return NULL; // error: not enough memory
-    }
-    tempBuffer = (uint8_t *)malloc(bufferSizeForVersion);
-    if (tempBuffer == NULL) {
-      free(qrcodeBuffer);
       return NULL; // error: not enough memory
     }
   }
@@ -173,8 +166,24 @@ uint8_t* QRCodeGenerator::generateQRCode(const char* text) {
     return NULL;  // error: provided buffer too small for required version
   }
 
+  if (tempBuffer == NULL) { // no buffer provided
+    tempBuffer = (uint8_t *)malloc(bufferSizeForVersion);
+    if (tempBuffer == NULL) {
+      if (this->qrcodeBuffer == NULL) {
+        free(qrcodeBuffer);
+      }
+      return NULL; // error: not enough memory
+    }
+  }
+  else if (bufferSizeForVersion > bufferSize) {
+    if (this->qrcodeBuffer == NULL) {
+      free(qrcodeBuffer);
+    }
+    return NULL;  // error: provided buffer too small for required version
+  }
+
   bool success = qrcodegen_encodeText(text, tempBuffer, qrcodeBuffer, (enum qrcodegen_Ecc)errorCorrectionLevel,
-                       minVersion, maxVersion, qrcodegen_Mask_AUTO, false);
+                                      minVersion, maxVersion, qrcodegen_Mask_AUTO, false);
 
   if (this->tempBuffer == NULL) {
     free(tempBuffer);

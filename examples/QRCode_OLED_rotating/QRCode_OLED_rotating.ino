@@ -34,14 +34,14 @@ void setup() {
   // passing color value 0xFF to Adafruit_SSD1306 causes weird bugs sometimes
   qrcode.setBackgroundColor(WHITE).setScale(2);
 
-  // Generate QR Code
-  qrcode.generate("https://youtu.be/0dU4mLOHGIQ");
+  // Generate QR Code data
+  qrcode.generateData("https://youtu.be/0dU4mLOHGIQ");
   
-  // Draw generated QR Code and don't release its data from memory.
-  // This way we can keep drawing it again and again without having to generate it.
+  // Draw generated QR Code and don't release its data from memory
+  // This way we can keep drawing it again and again without having to generate it
   qrcode.draw(0, 0, false);
 
-  // Write song name and artist
+  // Write song title and artist
   display.setTextColor(WHITE);
   display.setCursor(70, 10);
   display.print("RODA VIVA");
@@ -57,7 +57,7 @@ void setup() {
 }
 
 void loop() {
-  // Every 3s, rotate the QR Code 90˚ and draw it again on screen.
+  // Every 3s, rotate the QR Code 90˚ and draw it again on screen
   if (millis() > previousRotationInstant + ROTATION_INTERVAL) {
     previousRotationInstant = millis();
 

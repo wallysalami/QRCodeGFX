@@ -19,9 +19,8 @@ private:
   QRCodeGenerator generator;
   uint8_t *qrcodeBuffer = NULL;
 
-  int16_t getSideLength();
-
 public:
+  // Constructor
   QRCodeGFX(Adafruit_GFX& d);
 
   // Getters and setters
@@ -39,14 +38,22 @@ public:
 
   QRCodeGenerator& getGenerator();
 
+  // Drawing methods that handle everything
   bool draw(const String &text, int16_t x, int16_t y);
   bool draw(const char *text, int16_t x, int16_t y);
+  
+  // You can also use these methods to generate the QRCode data and draw it later
+  bool generateData(const String &text);
+  bool generateData(const char *text);
+  void releaseData();
 
-  // Side length is determined by the text size, the scale property and error correction level
+  // Side length is determined by the QR Code version and the scale property
   // This method is usefull if you need to automatically center the drawing on screen
-  // Check the README for a full example more details
-  int16_t generate(const String &text);
-  int16_t generate(const char *text);
+  // Call it after generating the data
+  // Check the README for a full example
+  int16_t getSideLength();
 
-  bool draw(int16_t x, int16_t y, bool releaseAllocatedMemory = true);
+  // Draw the QRCode on the screen after generating the data
+  // You can set releaseData to false if you want to draw the same QRCode multiple times
+  bool draw(int16_t x, int16_t y, bool releaseData = true);
 };

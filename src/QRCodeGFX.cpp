@@ -73,17 +73,15 @@ bool QRCodeGFX::draw(const String &text, int16_t x, int16_t y) {
 }
 
 bool QRCodeGFX::draw(const char* text, int16_t x, int16_t y) {
-  qrcodeBuffer = generator.generateQRCode(text);
-  if (qrcodeBuffer == NULL) {
+  bool success = generateData(text);
+  if (success == false) {
     return false;
   }
 
-  draw(x, y, true);
-
-  return true;
+  return draw(x, y, true);
 }
 
-bool QRCodeGFX::draw(int16_t x, int16_t y, bool releaseAllocatedMemory) {
+bool QRCodeGFX::draw(int16_t x, int16_t y, bool releaseQRCodeData) {
   int16_t x0 = x, y0 = y;
   int size = getSideLength();
   if (size == 0) {
@@ -125,8 +123,8 @@ bool QRCodeGFX::draw(int16_t x, int16_t y, bool releaseAllocatedMemory) {
     }
   }
 
-  if (generator.getQRCodeBuffer() == NULL && releaseAllocatedMemory) {
-    free(qrcodeBuffer);
+  if (releaseQRCodeData) {
+    releaseData();
   }
 
   return true;
@@ -134,17 +132,17 @@ bool QRCodeGFX::draw(int16_t x, int16_t y, bool releaseAllocatedMemory) {
 
 // Generation methods
 
-int16_t QRCodeGFX::generate(const String &text) {
-  return generate(text.c_str());
+bool QRCodeGFX::generateData(const String &text) {
+  return generateData(text.c_str());
 }
 
-int16_t QRCodeGFX::generate(const char *text) {
-  qrcodeBuffer = generator.generateQRCode(text);
+bool QRCodeGFX::generateData(const char *text) {
+  releaseData();
 
-  return getSideLength();
+  qrcodeBuffer = generator.generateData(text);
+
+  return qrcodeBuffer != NULL;
 }
-
-// Private methods
 
 int16_t QRCodeGFX::getSideLength() {
   if (qrcodeBuffer == NULL) {
@@ -153,4 +151,12 @@ int16_t QRCodeGFX::getSideLength() {
   uint8_t size = qrcodegen_getSize(qrcodeBuffer);
   int padding = scale * 3;
   return size * scale + 2 * padding;
+}
+
+void QRCodeGFX::releaseData() {
+  if (generator.getQRCodeBuffer() == NULL && qrcodeBuffer != NULL) {
+    free(qrcodeBuffer);
+  }
+
+  qrcodeBuffer = NULL;
 }
