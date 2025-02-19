@@ -5,7 +5,7 @@
 // That might be a problem for some devices with low memory (e.g. Arduino Uno)
 // You can save memory by defining QRCODE_GENERATOR_USE_LESS_MEMORY here (uncomment the line below)
 // This will disable the tables and some methods at compile time, reducing memory usage
-// In that case, you must set the version range or provide static buffers
+// In that case, you must set the version range according to your device capabilities
 // Please check the text size limits for each version at the link below
 // https://github.com/ricmoo/QRCode/tree/master?tab=readme-ov-file#data-capacities
 
