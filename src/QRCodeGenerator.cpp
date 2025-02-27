@@ -1,3 +1,11 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+*************************************************/
+
 #include "QRCodeGenerator.h"
 
 #ifndef QRCODE_GENERATOR_USE_LESS_MEMORY

@@ -1,3 +1,20 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+This example will keep drawing a rotating QR Code on the screen.
+It shows how you can generate the QR Code data once and draw it many times.
+
+This program was tested on a LilyGo TTGO Meshtastic 1.2 ESP32 LoRa.
+It has a embedded SSD1306 0.96’’ monochrome OLED display.
+Adjust the pin numbers if you are using a different device / wiring.
+
+You must also install the Adafruit_SSD1306 library to compile it!
+
+*************************************************/
+
 #include <Wire.h>
 #include <Adafruit_SSD1306.h>
 #include <QRCodeGFX.h>
@@ -20,6 +37,7 @@ QRCodeRotation rotationAngle = QRCodeRotation::R0;
 void setup() {
   Serial.begin(9600); delay(1000);
 
+  // Initialize the display
   Wire.begin(SDA_PIN, SCL_PIN);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, I2C_ADDRESS)) { 
@@ -35,6 +53,7 @@ void setup() {
   qrcode.setBackgroundColor(WHITE).setScale(2);
 
   // Generate QR Code data
+  // It's an old but awesome Brazilian song. =)
   qrcode.generateData("https://youtu.be/0dU4mLOHGIQ");
   
   // Draw generated QR Code and don't release its data from memory

@@ -1,3 +1,11 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+*************************************************/
+
 #include "QRCodeGFX.h"
 
 // Constructor

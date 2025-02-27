@@ -1,3 +1,11 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+*************************************************/
+
 // Using diff matrices to use less memory
 
 const uint8_t QR_NUMERIC_DIFF[39][4] = {

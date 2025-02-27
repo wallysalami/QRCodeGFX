@@ -1,3 +1,18 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+This example will draw different QR Codes from an array of configurations.
+It shows many of the customization options of the library.
+
+This program was tested on a Arduino Uno with a TFT Shield.
+
+You must also install the MCUFRIEND_kbv library to compile it!
+
+*************************************************/
+
 #include <MCUFRIEND_kbv.h>
 #include <QRCodeGFX.h>
 
@@ -55,6 +70,7 @@ void setup() {
     qrcode.draw(text, samples[i].x, samples[i].y);
   }
 
+  // Song title and artist
   display.setTextSize(2);
   display.setCursor(10, 265);
   display.print("Mega Man 2 - Dr.");

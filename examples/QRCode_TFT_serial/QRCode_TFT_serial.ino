@@ -1,3 +1,21 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+This example will ask the user to input some text on Serial Monitor.
+Then it will draw a QR Code for that text at the center of the screen.
+It will calculate and use the maximum QR Code size that fits the screen.
+It's an interesting example of QR Code generation from an arbitrary text.
+
+This program was tested on a Arduino Uno / Mega with a TFT Shield.
+
+You must also install the MCUFRIEND_kbv library to compile it!
+
+*************************************************/
+
+
 #include <MCUFRIEND_kbv.h>
 #include <QRCodeGFX.h>
 

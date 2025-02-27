@@ -1,8 +1,37 @@
+/*************************************************
+
+Copyright © 2025 Jan K. S.
+MIT License
+https://github.com/wallysalami/QRCodeGFX
+
+This example simulates a music player screen.
+It has a QR Code for the video clip link.
+It combines the QR Code with other drawing methods from Adafruit_GFX.
+
+This program was tested on a ESP32 S3 with a WeAct 2.9'' Black-White E-Paper Display.
+It should work with Waveshare E-Paper Display as well.
+That display uses the SPI protocol to receive drawing commands.
+The SPI pins changes from microcontroller to microcontroller.
+Here are some examples:
+
+Microcontroller | SDA (MOSI) pin | SCL (SCK) pin  
+--------------------------------------------------
+Arduino Uno     |       12       |       13       
+Arduino Mega    |       51       |       52       
+ESP32           |       23       |       18       
+ESP32 S3        |       11       |       12       
+
+You must also install the GxEPD2 library to compile it!
+
+*************************************************/
+
 #include <GxEPD2_BW.h>
 #include <QRCodeGFX.h>
 #include <Fonts/FreeSans9pt7b.h>
 #include <Fonts/FreeSansBold12pt7b.h>
 
+// Adjust the pin numbers according to your wiring
+// These were used with an ESP32 S3
 #define CS_PIN 10
 #define DC_PIN 14
 #define RESET_PIN 15
@@ -36,6 +65,7 @@ void setup() {
   display.print("Dangerous - 1991");
 
   // Draw QR Code for video link
+  // The face transitions at the end are still incredible to watch.
   qrcode.setScale(3);
   qrcode.draw("https://youtu.be/F2AitTPI5U0", 202, 0);
 
