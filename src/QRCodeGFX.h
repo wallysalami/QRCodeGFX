@@ -25,6 +25,9 @@ public:
   // Constructor
   QRCodeGFX(Adafruit_GFX& d);
 
+  // Destructor
+  ~QRCodeGFX();
+
   // Getters and setters
   QRCodeGFX& setScale(uint16_t s);
   uint16_t getScale();

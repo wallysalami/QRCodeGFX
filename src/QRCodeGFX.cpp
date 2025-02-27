@@ -5,6 +5,12 @@
 QRCodeGFX::QRCodeGFX(Adafruit_GFX& d): display(d) {
 }
 
+// Destructor
+
+QRCodeGFX::~QRCodeGFX() {
+  releaseData();
+}
+
 // Getters and setters
 
 QRCodeGFX& QRCodeGFX::setScale(uint16_t _scale) {
