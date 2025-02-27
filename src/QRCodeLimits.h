@@ -6,6 +6,8 @@ https://github.com/wallysalami/QRCodeGFX
 
 *************************************************/
 
+#pragma once
+
 // Using diff matrices to use less memory
 
 const uint8_t QR_NUMERIC_DIFF[39][4] = {
